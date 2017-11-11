@@ -24,5 +24,12 @@ public class Zoo {
     }
 
 
+    public int calculateTotalAnimals() {
+        int total = 0;
+        for(Enclosure enclosure : this.enclosures) {
+            total += enclosure.countInhabitants();
+        }
+        return total;
+    }
 }
 
