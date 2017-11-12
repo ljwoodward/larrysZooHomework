@@ -25,7 +25,7 @@ public class ZooTest {
         enclosure1 = new Enclosure<Lion>();
         enclosure1.addToEnclosure(animal1);
         enclosure1.addToEnclosure(animal2);
-        zoo = new Zoo();
+        zoo = new Zoo(725000.50);
         zoo.addEnclosureToZoo(enclosure1);
         enclosure2 = new Enclosure<Panda>();
         enclosure2.addToEnclosure(animal3);
@@ -42,6 +42,15 @@ public class ZooTest {
     public void testCalcualteTotalValueOfAnimals() {
         int actual = zoo.calculateTotalValueOfAnimals();
         assertEquals(180000, actual);
+    }
+
+    @Test
+    public void testSellAnimal() {
+        zoo.sellAnimal(animal1);
+        int actual = zoo.calculateTotalAnimals();
+        double actualBankBalance = zoo.getBankBalance();
+        assertEquals(2, actual);
+        assertEquals(770000.50, actualBankBalance, 0.05);
     }
 
 }

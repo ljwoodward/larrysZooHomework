@@ -30,4 +30,14 @@ public class Enclosure<T extends Animal> {
     public int countInhabitants() {
         return this.inhabitants.size();
     }
+
+    public int calculateValue() {
+        int total = 0;
+        for(Animal animal : this.inhabitants) {
+            total += animal.getCashValue();
+        }
+        return total;
+    }
+
+
 }

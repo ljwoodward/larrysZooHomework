@@ -8,16 +8,22 @@ import java.util.ArrayList;
 
 public class Zoo {
 
-    ArrayList<Enclosure> enclosures;
+    private ArrayList<Enclosure> enclosures;
 
-    public Zoo() {
+    private double bankBalance;
+
+    public Zoo(double bankBalance) {
         this.enclosures = new ArrayList();
+        this.bankBalance = bankBalance;
     }
 
     public void addEnclosureToZoo(Enclosure enclosure) {
         this.enclosures.add(enclosure);
     }
 
+    public double getBankBalance() {
+        return bankBalance;
+    }
 
     public void remove(Enclosure enclosure) {
         this.enclosures.remove(enclosure);
@@ -31,5 +37,23 @@ public class Zoo {
         }
         return total;
     }
+
+    public int calculateTotalValueOfAnimals() {
+        int total = 0;
+        for(Enclosure enclosure : this.enclosures) {
+            total += enclosure.calculateValue();
+        }
+        return total;
+    }
+
+    public void sellAnimal(Animal animal) {
+        for(Enclosure enclosure : this.enclosures) {
+            if(enclosure.inhabitants.contains(animal)) {
+                enclosure.remove(animal);
+                this.bankBalance += animal.getCashValue();
+            }
+        }
+    }
+
 }
 
