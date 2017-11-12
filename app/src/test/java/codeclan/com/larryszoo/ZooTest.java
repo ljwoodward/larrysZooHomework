@@ -16,6 +16,7 @@ public class ZooTest {
     Animal animal3;
     Enclosure enclosure1;
     Enclosure enclosure2;
+    Visitor visitor1;
 
     @Before
     public void setUp() throws Exception {
@@ -25,11 +26,12 @@ public class ZooTest {
         enclosure1 = new Enclosure<Lion>();
         enclosure1.addToEnclosure(animal1);
         enclosure1.addToEnclosure(animal2);
-        zoo = new Zoo(725000.50);
+        zoo = new Zoo(725000.50, 15.00);
         zoo.addEnclosureToZoo(enclosure1);
         enclosure2 = new Enclosure<Panda>();
         enclosure2.addToEnclosure(animal3);
         zoo.addEnclosureToZoo(enclosure2);
+        visitor1 = new Visitor("Gunther", 200.00);
     }
 
     @Test
@@ -48,9 +50,21 @@ public class ZooTest {
     public void testSellAnimal() {
         zoo.sellAnimal(animal1);
         int actual = zoo.calculateTotalAnimals();
-        double actualBankBalance = zoo.getBankBalance();
         assertEquals(2, actual);
-        assertEquals(770000.50, actualBankBalance, 0.05);
+    }
+
+    @Test
+    public void testSellAnimalIncreasesBankBalance() {
+        zoo.sellAnimal(animal1);
+        double actual = zoo.getBankBalance();
+        assertEquals(770000.50, actual, 0.05);
+    }
+
+    @Test
+    public void testNewVisitor() {
+        zoo.newVisitor(visitor1);
+        int actual = zoo.totalCurrentVisitors;
+        assertEquals(1, actual);
     }
 
 }

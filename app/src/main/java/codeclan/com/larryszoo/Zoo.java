@@ -9,12 +9,15 @@ import java.util.ArrayList;
 public class Zoo {
 
     private ArrayList<Enclosure> enclosures;
-
     private double bankBalance;
+    private double ticketPrice;
+    private ArrayList<Visitor> visitors;
 
-    public Zoo(double bankBalance) {
+    public Zoo(double bankBalance, double ticketPrice) {
         this.enclosures = new ArrayList();
         this.bankBalance = bankBalance;
+        this.ticketPrice = ticketPrice;
+        this.visitors = new ArrayList();
     }
 
     public void addEnclosureToZoo(Enclosure enclosure) {
